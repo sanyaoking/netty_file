@@ -64,12 +64,12 @@ public class HttpServer extends SimpleChannelInboundHandler<HttpObject> {
                     }
                 }
                 System.out.println("添加下载文件httpDownFileServerHandler");
-            }else if("byte".equals(type)) {//通过byte或者文件流上传文件使用
+            }/*else if("byte".equals(type)) {//通过byte或者文件流上传文件使用
                 //添加处理器
                 ctx.pipeline().addAfter("uploadDecoder", "fileByteServerHandler", new FileByteServerHandler());
                 //添加编码器
                 ctx.pipeline().addAfter("uploadDecoder", "uploadEncoder", new UploadEncoder());
-            }else{//http上传文件使用
+            }*/else{//http上传文件使用
                 HttpContent chunk = (HttpContent) httpObject;
                 //接受完最后一个数据块之后进行处理
                 if(chunk instanceof LastHttpContent) {

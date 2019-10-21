@@ -26,7 +26,7 @@ public class HttpUtil {
             String host, int port, URI uriSimple, HttpRequest request,  HttpPostRequestEncoder bodyRequestEncoder) throws Exception {
         ChannelFuture future = bootstrap.connect(SocketUtils.socketAddress(host, port));
         Channel channel = future.sync().channel();
-        //创建post请求
+        //创建post请求22222
         HttpHeaders headers = request.headers();
         headers.set(HttpHeaderNames.HOST, host);
         headers.set(HttpHeaderNames.CONNECTION, HttpHeaderValues.CLOSE);

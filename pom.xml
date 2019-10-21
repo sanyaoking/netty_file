@@ -56,8 +56,8 @@
 		</dependency>
 		<!--<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-			<scope>test</scope>
+			<artifactId>spring-boot-starter-ByteClient</artifactId>
+			<scope>ByteClient</scope>
 			<exclusions>
 				<exclusion>
 					<groupId>org.junit.vintage</groupId>

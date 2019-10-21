@@ -38,7 +38,7 @@ public class HttpFileStart {
     private static final boolean SSL = System.getProperty("ssl") != null;
     private static final int PORT = Integer.parseInt(PropUtil.getV("port"));
     private static Logger log = Logger.getLogger(HttpFileStart.class.getName());
-    public static void main(String[] args) throws Exception {
+    public static void start(String[] args) throws Exception {
         // Configure SSL.
         final SslContext sslCtx;
         if (SSL) {

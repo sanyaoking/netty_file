@@ -4,7 +4,7 @@ import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelPipeline;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.handler.codec.http.*;
-import io.netty.handler.codec.string.StringDecoder;
+import top.mc.netty.netty.busAtomHandler.FileByteServerHandler;
 import top.mc.netty.netty.handler.*;
 import top.mc.netty.util.PropUtil;
 
@@ -25,13 +25,14 @@ public class HttpFileInitializer extends ChannelInitializer<SocketChannel> {
     }
     private void initChannelByte(SocketChannel socketChannel) throws Exception {
         ChannelPipeline pipeline = socketChannel.pipeline();
-        pipeline.addLast("1",new FileByteServerHandler());
+        //绑定解码器
+        pipeline.addLast("httpRequestDecoderByteMC",new HttpRequestDecoderByteMC());
     }
     private void initChannelFile(SocketChannel socketChannel) throws Exception {
         ChannelPipeline pipeline = socketChannel.pipeline();
-        //绑定解码器
+        //绑定解码器 经过HttpServerCodec解码之后，一个HTTP请求会导致：ParseRequestHandler的 channelRead()方法调用多次（测试时 "received message"输出了两次）
         pipeline.addLast("1",new HttpRequestDecoder());
-        //HttpObjectAggregator 将多个消息转换为单一的一个FullHttpRequest，控制请求的大小
+        //HttpObjectAggregator 将多个消息转换为单一的一个FullHttpRequest，控制请求的大小  将多个消息转换为单一的一个FullHttpRequest
         pipeline.addLast(new HttpObjectAggregator(65536*5));
 //        //用于压缩数据(官方网站有这个东西，具体如何使用未知)
         pipeline.addLast("3",new HttpContentCompressor());

@@ -12,6 +12,15 @@ import java.io.Serializable;
 public class UploadFile  implements Serializable {
     private byte[] b;
     private String fileName;
+    private String dir;
+
+    public String getDir() {
+        return dir;
+    }
+
+    public void setDir(String dir) {
+        this.dir = dir;
+    }
 
     public UploadFile(){
     }

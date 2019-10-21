@@ -61,7 +61,7 @@ public class ResourceHander extends SimpleChannelInboundHandler<HttpContent> {
         ResultBean resultBean = ctx.channel().attr(reusltBean).get();
         if(resultBean==null){
             resultBean = new ResultBean();
-            resultBean.setMsg("this is test!");
+            resultBean.setMsg("this is ByteClient!");
         }
         ChannelFuture cf = ctx.channel().writeAndFlush(resultBean);
         cf.addListener(ChannelFutureListener.CLOSE);
